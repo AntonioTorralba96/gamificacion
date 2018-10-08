@@ -1,27 +1,73 @@
 {
-  "name": "Juego",
-  "base": "PersistedModel",
-  "idInjection": true,
-  "options": {
-    "validateUpsert": true
-  },
-  "properties": {
-    "nombre": {
-      "type": "string",
-      "required": true
+    "name": "Juego",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
     },
-    "descripcion": {
-      "type": "string"
+    "properties": {
+        "nombre": {
+            "type": "string",
+            "required": true
+        },
+        "descripcion": {
+            "type": "string"
+        },
+        "imagen": {
+            "type": "string"
+        },
+        "grupal": {
+            "type": "boolean"
+        }
     },
-    "imagen": {
-      "type": "string"
-    },
-    "grupal": {
-      "type": "boolean"
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {
+        "getName": {
+            "accepts": [
+                {
+                    "arg": "id",
+                    "type": "number",
+                    "require": true,
+                    "description": "id",
+                    "http": {
+                    "source": "query"
+                    }
+                }
+            ],
+            "returns": [
+                {
+                    "arg": "nombre",
+                    "type": "string",
+                    "root": false,
+                    "description": "nombre del juego"
+                }
+            ],
+            "description": "Da nombre",
+            "http": [
+                {
+                    "path": "/getname",
+                    "verb": "get"
+                }
+            ]
+        },
+        "prototype.getNameInstancia": {
+            "accepts": [],
+            "returns": [
+                {
+                    "arg": "nombre",
+                    "type": "string",
+                    "root": false,
+                    "description": "el nombre del juego"
+                }
+            ],
+            "description": "da nombre",
+            "http": [{
+                    "path": "/getnameInstancia",
+                    "verb": "get"
+                }
+            ]
+        }
     }
-  },
-  "validations": [],
-  "relations": {},
-  "acls": [],
-  "methods": {}
 }
